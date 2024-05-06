@@ -1,0 +1,25 @@
+#counter{
+    height: 75vh;
+    width: 39vw;
+    
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#counter h1{
+    font-size: 3em;
+}
+
+#timer{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+#option{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 39vw;
+}
