@@ -1,7 +1,7 @@
 #counter{
     height: 75vh;
     width: 39vw;
-    
+    border-radius:50px;
     color: #000;
     display: flex;
     align-items: center;
