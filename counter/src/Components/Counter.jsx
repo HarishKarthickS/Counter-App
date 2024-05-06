@@ -18,24 +18,28 @@ function Counter() {
     //   let cookie = cookieArray.find((row) => row.startsWith(name + '='));
     //   return cookie
     // }
-    useEffect(()=>{
-        let interval = 0;
-        
-        
-        if (isActive && isPaused === false) {
-            interval = setInterval(() => {
-                setTime((time) => time + 1);
-                setCookie('time',time,1)
-                // console.log(getCookie("time"))
-            }, 1000);
+    useEffect(() => {
+        let interval = null;
+      
+        if (isActive && !isPaused) {
+          interval = setInterval(() => {
+            setTime((prevTime) => {
+              const newTime = prevTime + 1;
+              if (newTime % 2 === 0) {
+                setColor(`#${Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')}`);
+              }
+              return newTime;
+            });
+          }, 1000);
         } else {
-            clearInterval(interval);
+          clearInterval(interval);
         }
+      
         return () => {
-            clearInterval(interval);
+          clearInterval(interval);
         };
-    
-    },[isActive,isStop,isPaused])
+      }, [isActive, isPaused]);
+      
     const startTimer=()=>{
         setIsActive(true)
         setIsPaused(false)
@@ -50,7 +54,7 @@ function Counter() {
     }
   return (
     <>
-        <div id='counter' style={{backgroundColor:{}}}>
+        <div id='counter' style={{backgroundColor:`${color}`}}>
             <h1 id='title'>Counter</h1>
             <div id='timer'>
                 <span>{time}</span>
